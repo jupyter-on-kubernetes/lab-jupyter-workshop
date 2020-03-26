@@ -51,8 +51,8 @@ spec:
       containers:
       - name: workshop
         volumeMounts:
-        - name: notebook
-          mountPath: /home/eduk8s/notebook
+        - name: workspace
+          mountPath: /home/eduk8s/workspace
       - name: notebook
         image: jupyter/minimal-notebook:latest
         args:
@@ -70,13 +70,12 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /var/run/jupyter
-        - name: notebook
+        - name: workspace
           mountPath: /home/jovyan
-          subPath: workspace
       volumes:
       - name: config
         configMap:
           name: notebook-credentials
-      - name: notebook
+      - name: workspace
         persistentVolumeClaim:
           claimName: $(session_namespace)-notebook
