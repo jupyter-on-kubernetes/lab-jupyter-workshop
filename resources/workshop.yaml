@@ -1,0 +1,79 @@
+apiVersion: training.eduk8s.io/v1alpha1
+kind: Workshop
+metadata:
+  name: lab-jupyter-testing
+spec:
+  vendor: eduk8s.io
+  title: Markdown Sample
+  description: A sample workshop using Markdown
+  url: https://github.com/eduk8s-tests/lab-jupyter-testing
+  image: quay.io/eduk8s/workshop-dashboard:develop
+  duration: 30m
+  session:
+    budget: x-small
+    applications:
+      terminal:
+        enabled: false
+    ingresses:
+    - name: jupyter
+      port: 8888
+    dashboards:
+    - name: Jupyter
+      url: "$(ingress_protocol)://$(session_namespace)-jupyter.$(ingress_domain)/"
+    objects:
+    - apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        namespace: $(workshop_namespace)
+        name: notebook-credentials
+      data:
+        jupyter_notebook_config.json: |-
+          {
+            "NotebookApp": {
+              "password": "sha1:9c2069f12451:2ce0e0fb5b5cfa44fe90e8f92f5b9153d988dbd2"
+            }
+          }
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        namespace: $(workshop_namespace)
+        name: $(session_namespace)-notebook
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+    patches:
+      containers:
+      - name: workshop
+        volumeMounts:
+        - name: notebook
+          mountPath: /home/eduk8s/notebook
+      - name: notebook
+        image: jupyter/minimal-notebook:latest
+        args:
+        - start-notebook.sh
+        - --config
+        - /var/run/jupyter/jupyter_notebook_config.json
+        - --ip=0.0.0.0
+        - --port=8888
+        resources:
+          limits:
+            memory: 512Mi
+        env:
+        - name: JUPYTER_ENABLE_LAB
+          value: "true"
+        volumeMounts:
+        - name: config
+          mountPath: /var/run/jupyter
+        - name: notebook
+          mountPath: /home/jovyan
+          subPath: workspace
+      volumes:
+      - name: config
+        configMap:
+          name: notebook-credentials
+      - name: notebook
+        persistentVolumeClaim:
+          claimName: $(session_namespace)-notebook

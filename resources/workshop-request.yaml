@@ -1,0 +1,8 @@
+apiVersion: training.eduk8s.io/v1alpha1
+kind: WorkshopRequest
+metadata:
+  name: lab-jupyter-testing
+spec:
+  environment:
+    name: lab-jupyter-testing
+    token: lab-jupyter-testing
