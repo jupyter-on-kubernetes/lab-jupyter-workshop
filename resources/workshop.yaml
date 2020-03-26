@@ -48,6 +48,12 @@ spec:
           requests:
             storage: 1Gi
     patches:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 0
+        supplementalGroups:
+        - 100
+        fsGroup: 0
       containers:
       - name: workshop
         volumeMounts:
