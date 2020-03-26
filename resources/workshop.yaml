@@ -4,8 +4,8 @@ metadata:
   name: lab-jupyter-testing
 spec:
   vendor: eduk8s.io
-  title: Markdown Sample
-  description: A sample workshop using Markdown
+  title: Jupyter Testing
+  description: Play area for testing JupyterLab.
   url: https://github.com/jupyter-on-kubernetes/lab-jupyter-testing
   image: quay.io/eduk8s/workshop-dashboard:develop
   content: github.com/jupyter-on-kubernetes/lab-jupyter-testing
@@ -26,9 +26,9 @@ spec:
           }
   session:
     budget: x-small
-    #applications:
-    #  terminal:
-    #    enabled: false
+    applications:
+      terminal:
+        enabled: false
     ingresses:
     - name: jupyter
       port: 8888
