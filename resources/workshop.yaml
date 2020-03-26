@@ -10,17 +10,7 @@ spec:
   image: quay.io/eduk8s/workshop-dashboard:develop
   content: github.com/jupyter-on-kubernetes/lab-jupyter-testing
   duration: 30m
-  session:
-    budget: x-small
-    #applications:
-    #  terminal:
-    #    enabled: false
-    ingresses:
-    - name: jupyter
-      port: 8888
-    dashboards:
-    - name: Jupyter
-      url: "$(ingress_protocol)://$(session_namespace)-jupyter.$(ingress_domain)/"
+  workshop:
     objects:
     - apiVersion: v1
       kind: ConfigMap
@@ -34,6 +24,18 @@ spec:
               "password": "sha1:9c2069f12451:2ce0e0fb5b5cfa44fe90e8f92f5b9153d988dbd2"
             }
           }
+  session:
+    budget: x-small
+    #applications:
+    #  terminal:
+    #    enabled: false
+    ingresses:
+    - name: jupyter
+      port: 8888
+    dashboards:
+    - name: Jupyter
+      url: "$(ingress_protocol)://$(session_namespace)-jupyter.$(ingress_domain)/"
+    objects:
     - apiVersion: v1
       kind: PersistentVolumeClaim
       metadata:
