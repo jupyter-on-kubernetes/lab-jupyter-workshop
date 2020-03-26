@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -d notebook/workspace/samples ]; then
-    cp -rp samples notebook/workspace/samples
-    fix-permissions notebook/workspace/samples
+if [ ! -d /home/eduk8s/notebook/workspace/samples ]; then
+    cp -rp /home/eduk8s/samples /home/eduk8s/notebook/workspace/
+    fix-permissions /home/eduk8s/notebook/workspace/samples
 fi
