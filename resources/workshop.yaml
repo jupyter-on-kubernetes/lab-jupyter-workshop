@@ -1,4 +1,4 @@
-apiVersion: training.eduk8s.io/v1alpha1
+apiVersion: training.eduk8s.io/v1alpha2
 kind: Workshop
 metadata:
   name: lab-jupyter-testing
@@ -7,8 +7,8 @@ spec:
   title: Jupyter Testing
   description: Play area for testing JupyterLab.
   url: https://github.com/jupyter-on-kubernetes/lab-jupyter-testing
-  image: quay.io/eduk8s/workshop-dashboard:master
-  content: github.com/jupyter-on-kubernetes/lab-jupyter-testing
+  content:
+    files: github.com/jupyter-on-kubernetes/lab-jupyter-testing
   duration: 30m
   workshop:
     objects:
