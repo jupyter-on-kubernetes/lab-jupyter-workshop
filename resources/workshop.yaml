@@ -7,11 +7,13 @@ spec:
   description: Play area for testing JupyterLab.
   url: https://github.com/jupyter-on-kubernetes/lab-jupyter-testing
   content:
-    image: jupyter-environment:*
+    image: conda-environment:*
     files: github.com/jupyter-on-kubernetes/lab-jupyter-testing
-  duration: 60m
   session:
-    budget: x-small
+    budget: medium
+    resources:
+      memory: 2Gi
+      storage: 5Gi
     applications:
       terminal:
         enabled: true
@@ -22,6 +24,12 @@ spec:
         enabled: true
         plugins:
           enabled: true
-    resources:
-      memory: 1Gi
-      storage: 5Gi
+    env:
+    - name: ENABLE_JUPYTERLAB
+      value: "true"
+    ingresses:
+    - name: jupyterlab
+      port: 8888
+    dashboards:
+    - name: JupyterLab
+      url: "$(ingress_protocol)://$(session_namespace)-jupyterlab.$(ingress_domain)/"
