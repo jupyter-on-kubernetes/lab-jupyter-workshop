@@ -18,7 +18,7 @@ Deployment
 To load the workshop definition run:
 
 ```
-kubectl apply -k github.com/jupyter-on-kubernetes/jupyter-testing
+kubectl apply -f https://raw.githubusercontent.com/jupyter-on-kubernetes/jupyter-testing/master/resources/workshop.yaml
 ```
 
 To deploy a sample training portal which hosts the workshop, run:
@@ -30,7 +30,7 @@ kubectl apply -f https://raw.githubusercontent.com/jupyter-on-kubernetes/jupyter
 Then run:
 
 ```
-kubectl get trainingportal/jupyter-testing
+kubectl get trainingportal/lab-jupyter-testing
 ```
 
 This will output the URL to access the web portal for the training environment.
@@ -49,4 +49,5 @@ kubectl delete -f https://raw.githubusercontent.com/jupyter-on-kubernetes/jupyte
 When you are finished with the workshop definition, you can delete it by running:
 
 ```
-kubectl delete -k github.com/jupyter-on-kubernetes/jupyter-testing
+kubectl delete -f https://raw.githubusercontent.com/jupyter-on-kubernetes/jupyter-testing/master/resources/workshop.yaml
+```
