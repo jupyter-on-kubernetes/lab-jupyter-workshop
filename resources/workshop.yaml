@@ -26,8 +26,8 @@ spec:
     - name: ENABLE_JUPYTERLAB
       value: "true"
     ingresses:
-    - name: jupyterlab
+    - name: jupyter
       port: 8888
     dashboards:
-    - name: JupyterLab
-      url: "$(ingress_protocol)://$(session_namespace)-jupyterlab.$(ingress_domain)/"
+    - name: Jupyter
+      url: "$(ingress_protocol)://$(session_namespace)-jupyter.$(ingress_domain)/"
