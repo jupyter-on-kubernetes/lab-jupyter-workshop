@@ -6,5 +6,5 @@ spec:
   workshops:
   - name: lab-jupyter-testing
     capacity: 1
-    expires: 100h
-    orphaned: 5m
+    expires: 1h
+    orphaned: 15m
