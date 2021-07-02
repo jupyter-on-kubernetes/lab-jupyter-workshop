@@ -1,5 +1,5 @@
-LAB - Jupyter Testing
-=====================
+LAB - Jupyter Workshop
+======================
 
-This repository holds source files for a workshop for testing embedded Jupyter
-notebook, including a persistent workspace.
+This repository holds source files for demonstrating use of JupyterLab as
+part of a workshop.
