@@ -1,10 +1,10 @@
 apiVersion: training.eduk8s.io/v1alpha1
 kind: TrainingPortal
 metadata:
-  name: lab-jupyter-testing
+  name: lab-jupyter-workshop
 spec:
   workshops:
-  - name: lab-jupyter-testing
+  - name: lab-jupyter-workshop
     capacity: 1
     expires: 1h
     orphaned: 15m
