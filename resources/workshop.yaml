@@ -3,7 +3,7 @@ kind: Workshop
 metadata:
   name: lab-jupyter-workshop
 spec:
-  title: Jupyter Testing
+  title: Jupyter Workshop
   description: Demonstration of using Jupyter in a workshop.
   url: https://github.com/jupyter-on-kubernetes/lab-jupyter-workshop
   content:
