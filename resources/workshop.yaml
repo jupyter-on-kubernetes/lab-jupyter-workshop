@@ -1,19 +1,25 @@
-apiVersion: training.eduk8s.io/v1alpha2
+apiVersion: training.educates.dev/v1beta1
 kind: Workshop
 metadata:
   name: lab-jupyter-workshop
 spec:
-  title: Jupyter Workshop
+  title: "Jupyter Workshop"
   description: Demonstration of using Jupyter in a workshop.
-  url: https://github.com/jupyter-on-kubernetes/lab-jupyter-workshop
-  content:
+  workshop:
     image: conda-environment:*
-    files: github.com/jupyter-on-kubernetes/lab-jupyter-workshop
+    files:
+    - image:
+        url: $(image_repository)/lab-jupyter-workshop-files:latest
+      includePaths:
+      - /workshop/**
+      - /exercises/**
+      - /README.md
   session:
-    budget: medium
     resources:
       memory: 2Gi
       storage: 5Gi
+    namespaces:
+      budget: medium
     applications:
       terminal:
         enabled: true
@@ -30,4 +36,4 @@ spec:
       port: 8888
     dashboards:
     - name: Jupyter
-      url: "$(ingress_protocol)://$(session_namespace)-jupyter.$(ingress_domain)/"
+      url: "$(ingress_protocol)://jupyter-$(session_namespace).$(ingress_domain)/"
